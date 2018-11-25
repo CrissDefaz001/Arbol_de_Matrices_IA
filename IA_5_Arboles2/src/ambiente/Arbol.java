@@ -6,7 +6,7 @@ import java.util.Random;
 public class Arbol {
 	
 	Nodo<int[][]> raiz = new Nodo<int[][]>(null, "matriz"); //nodo padre inicial
-
+	
 	Random r = new Random();
 	// Arreglo de valores randomicos, valor randómico por funda
 	int[] vrf = { generarRandom(), generarRandom(), generarRandom() };
@@ -24,7 +24,6 @@ public class Arbol {
 		generarArbol(raiz, 1); //hijos de hijos, desde la columna 1 
 		System.out.println("|======================= Arbol =======================|");
 		imprimirArbol(raiz, 1); //imprime el arbol, desde el nivel 1
-		
 
 	}
 	

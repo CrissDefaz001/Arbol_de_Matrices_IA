@@ -1,9 +1,10 @@
 package ambiente;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Nodo<T> {
-
+public class Nodo<T> implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	Nodo<T> padre;
 	T dato = null;

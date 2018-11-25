@@ -8,18 +8,18 @@ public class Profundidad {
 	public ArrayList<Nodo<int[][]>> nodosDelArbol;
 	public ArrayList<Nodo<int[][]>> recorrido;
 	public int[][] mat_ideal;
-	Arbol a = new Arbol();
+	//Arbol a;
 
 	// Constructor que recibe el arbol y la matriz ideal
 	public Profundidad(ArrayList<Nodo<int[][]>> nodosDelArbol, int[][] m) {
-
 		this.nodosDelArbol = nodosDelArbol; // Recibe al arraylist de la clase Arbol
 		recorrido = new ArrayList<>(); // ArrayList que almacenará el recorido de nodos
 		mat_ideal = new int[3][4];
 		mat_ideal = m; // guarda la matriz ideal m en una variable para esta clase
 	}
 
-	// Inicia la búsqueda y retorna el tamaño de nodos recorridos
+	// Inicia la búsqueda y retorna la lista de nodos recorridos
+//	public ArrayList<Nodo<int[][]>> inicializarBusqueda() {
 	public int inicializarBusqueda() {
 		Nodo<int[][]> padre = nodosDelArbol.get(0);
 		System.out.println("|======== Búsqueda en Profundidad =======|");
@@ -27,6 +27,7 @@ public class Profundidad {
 		System.out.println("Total nodos recorridos: " + recorrido.size());
 		imprimirRecorrido(recorrido);
 		return recorrido.size();
+		
 	}
 
 	// La busqueda en profundidad utiliza una pila para guardar los nodos y

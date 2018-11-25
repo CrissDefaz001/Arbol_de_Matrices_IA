@@ -9,19 +9,20 @@ public class Anchura {
 	public ArrayList<Nodo<int[][]>> nodosDelArbol;
 	public ArrayList<Nodo<int[][]>> recorrido;
 	public int[][] mat_ideal;
-	Arbol a = new Arbol();
+//	Arbol a = new Arbol();
 
 	// Constructor que recibe el arbol y la matriz ideal
 	public Anchura(ArrayList<Nodo<int[][]>> nodosDelArbol, int[][] m) {
 		this.nodosDelArbol = nodosDelArbol; // Recibe al arraylist de la clase Arbol
 		recorrido = new ArrayList<>(); // ArrayList que almacenará el recorido de nodos
 		mat_ideal = new int[3][4];
-		mat_ideal = m; // guarda la matriz ideal m en una variable para esta clase
+		mat_ideal = m; // guarda la matriz ideal m en una  variable para esta clase
 	}
 
-	// Inicia la búsqueda y retorna el tamaño de nodos recorridos
+	// Inicia la búsqueda y retorna la lista de nodos recorridos
+//	public ArrayList<Nodo<int[][]>> inicializarBusqueda() {
 	public int inicializarBusqueda() {
-	
+	//	new Anchura(a.nodosDelArbol, a.generarMatrizIdeal());
 		Nodo<int[][]> padre = nodosDelArbol.get(0);
 		System.out.println("|======== Búsqueda en Anchura =======|");
 		buscarBFS(padre);
