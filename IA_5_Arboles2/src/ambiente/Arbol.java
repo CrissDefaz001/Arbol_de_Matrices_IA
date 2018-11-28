@@ -122,7 +122,7 @@ public class Arbol {
 					utilidad += listaIni.get(i).getData()[j][col];
 				}
 			}
-			if (utilidad >= 4000 && cont < 3) { //validacion de criterios
+			if (utilidad >= 3500 && cont < 3) { //validacion de criterios
 				listaFin.add(new Nodo<int[][]>(listaIni.get(i).getData(), listaIni.get(i).info));
 			}
 			utilidad = 0; cont = 0; // reiniciando contadores

@@ -36,14 +36,15 @@ public class AgenteAnchura extends Agent {
 			Anchura an = new Anchura(((Arbol) obj).nodosDelArbol, ((Arbol) obj).generarMatrizIdeal());
 			a = an.inicializarBusqueda();
 			//ls.setNodosDelArbol(a.inicializarBusqueda());
-			System.out.println("Ag anch: "+a);
 		
 			if (a != 0) {
 				/* ======== Mensaje ======= */
 				enviarMensaje(a, "AgenteBroker", "A->B");
 				/* ======== Mensaje ======= */
 				doDelete();
+				
 			}
+			doWait(100);
 		}
 
 		@Override
@@ -56,8 +57,8 @@ public class AgenteAnchura extends Agent {
 			id.setLocalName(receptor);
 			ACLMessage acl = new ACLMessage(ACLMessage.INFORM);
 			acl.addReceiver(id);
-		//	acl.setSender(getAID());
-			acl.setSender(getAgent().getAID()); //si el comportamiento esta en otro lado.
+			acl.setSender(getAID());
+		//	acl.setSender(getAgent().getAID()); //si el comportamiento esta en otro lado.
 			try {
 				acl.setContentObject(lista);
 			} catch (IOException e) {

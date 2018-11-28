@@ -12,8 +12,6 @@ import jade.lang.acl.ACLMessage;
 @SuppressWarnings("serial")
 public class AgenteProfundidad extends Agent {
 
-//	Arbol as;
-//	ListaSerial ls = new ListaSerial();
 	@Override
 	protected void takeDown() {
 
@@ -37,8 +35,8 @@ public class AgenteProfundidad extends Agent {
 			int a = 0;
 			Profundidad prof = new Profundidad(((Arbol) obj).nodosDelArbol, ((Arbol) obj).generarMatrizIdeal());
 			// ls.setNodosDelArbol(a.inicializarBusqueda());
+
 			a = prof.inicializarBusqueda();
-			System.out.println("Ag prof: " + a);
 
 			if (a != 0) {
 				/* ======== Mensaje ======= */
@@ -46,6 +44,7 @@ public class AgenteProfundidad extends Agent {
 				/* ======== Mensaje ======= */
 				doDelete();
 			}
+			doWait(100);
 		}
 
 		@Override
@@ -59,9 +58,8 @@ public class AgenteProfundidad extends Agent {
 			id.setLocalName(receptor);
 			ACLMessage acl = new ACLMessage(ACLMessage.INFORM);
 			acl.addReceiver(id);
-		//	acl.setSender(getAID());
-			
-			acl.setSender(getAgent().getAID()); // si el comportamiento esta en otro lado.
+			acl.setSender(getAID());
+	//		acl.setSender(getAgent().getAID()); // si el comportamiento esta en otro lado.
 			try {
 				acl.setContentObject(lista);
 			} catch (IOException e) {

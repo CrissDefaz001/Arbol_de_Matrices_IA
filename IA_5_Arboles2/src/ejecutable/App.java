@@ -20,13 +20,14 @@ public class App {
 //		new Profundidad(a.nodosDelArbol, a.generarMatrizIdeal()).inicializarBusqueda();
 		
 		//Utilizando agentes inteligentes:
-		System.out.println("|====================== Agentes ======================|");
-	
+		System.out.println("|====================== Arbol ======================|");
 		Arbol a = new Arbol();
 		a.inicializarArbol();
+		System.out.println("Total de nodos (matrices) generadas: "+ a.nodosDelArbol.size());
 		Contenedor con = new Contenedor();
 		System.out.println("\nMatriz ideal:");
 		a.imprimirMatriz(a.generarMatrizIdeal());
+		System.out.println("|====================== Agentes ======================|");
 		con.inicializarContenedor(a);
 		
 	}

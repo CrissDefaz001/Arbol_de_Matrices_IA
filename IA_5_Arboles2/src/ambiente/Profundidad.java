@@ -22,10 +22,11 @@ public class Profundidad {
 //	public ArrayList<Nodo<int[][]>> inicializarBusqueda() {
 	public int inicializarBusqueda() {
 		Nodo<int[][]> padre = nodosDelArbol.get(0);
-		System.out.println("|======== Búsqueda en Profundidad =======|");
+		System.out.println("|========= Búsqueda en Profundidad ========|");
 		buscarDFS(padre);
-		System.out.println("Total nodos recorridos: " + recorrido.size());
+		System.out.println("|================ Recorrido ===============|");
 		imprimirRecorrido(recorrido);
+		System.out.println("Total nodos recorridos: " + recorrido.size());
 		return recorrido.size();
 		
 	}
@@ -41,7 +42,7 @@ public class Profundidad {
 			for (Nodo<int[][]> each : temp.getHijos()) {
 				recorrido.add(each); // añade sus hijos al recorrido
 				if (buscarMatriz(mat_ideal, each)) {
-					System.out.println("¡¡Encontré la matriz con profundidad!!");
+					System.out.println("Encontré la matriz con profundidad!: "+each.info);
 					return;
 				} else {
 					pila.push(each); // Agrega el nodo a la cola hasta hallar el ideal

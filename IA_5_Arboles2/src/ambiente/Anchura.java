@@ -24,10 +24,11 @@ public class Anchura {
 	public int inicializarBusqueda() {
 	//	new Anchura(a.nodosDelArbol, a.generarMatrizIdeal());
 		Nodo<int[][]> padre = nodosDelArbol.get(0);
-		System.out.println("|======== Búsqueda en Anchura =======|");
+		System.out.println("|=========== Búsqueda en Anchura ==========|");
 		buscarBFS(padre);
-		System.out.println("Total nodos recorridos: " + recorrido.size());
+		System.out.println("|================ Recorrido ===============|");
 		imprimirRecorrido(recorrido);
+		System.out.println("Total nodos recorridos: " + recorrido.size());
 		return recorrido.size();
 	}
 
@@ -41,7 +42,7 @@ public class Anchura {
 			for (Nodo<int[][]> each : temp.getHijos()) {
 				recorrido.add(each); // añade sus hijos al recorrido
 				if (buscarMatriz(mat_ideal, each)) {
-					System.out.println("¡¡Encontré la matriz con anchura!!");
+					System.out.println("Encontré la matriz con anchura!: " +each.info);
 					return;
 				} else {
 					cola.add(each); // Agrega el nodo a la cola hasta hallar el ideal
