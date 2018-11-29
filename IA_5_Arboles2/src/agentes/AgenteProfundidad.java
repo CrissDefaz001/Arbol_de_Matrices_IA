@@ -30,21 +30,19 @@ public class AgenteProfundidad extends Agent {
 		@Override
 		public void action() {
 
-			// as = (Arbol) getArguments()[0];
-			Object obj = (Object) getArguments()[0];
+			Object obj = (Object) getArguments()[0]; //capturamos la clase arbol enviada desde el contenedor
 			int a = 0;
+			//instaciamos la clase profunidad 
 			Profundidad prof = new Profundidad(((Arbol) obj).nodosDelArbol, ((Arbol) obj).generarMatrizIdeal());
-			// ls.setNodosDelArbol(a.inicializarBusqueda());
-
+			//ya podemos iniciar los metodos de arbol en esta clase.
 			a = prof.inicializarBusqueda();
 
 			if (a != 0) {
 				/* ======== Mensaje ======= */
 					enviarMensaje(a, "AgenteBroker", "P->B");
 				/* ======== Mensaje ======= */
-				doDelete();
 			}
-			doWait(100);
+			doDelete();
 		}
 
 		@Override
@@ -53,7 +51,7 @@ public class AgenteProfundidad extends Agent {
 			return false;
 		}
 
-		private void enviarMensaje(int lista, String receptor, String idConv) {
+		private void enviarMensaje(int tam, String receptor, String idConv) {
 			AID id = new AID(); // id de la conversacion
 			id.setLocalName(receptor);
 			ACLMessage acl = new ACLMessage(ACLMessage.INFORM);
@@ -61,7 +59,7 @@ public class AgenteProfundidad extends Agent {
 			acl.setSender(getAID());
 	//		acl.setSender(getAgent().getAID()); // si el comportamiento esta en otro lado.
 			try {
-				acl.setContentObject(lista);
+				acl.setContentObject(tam);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

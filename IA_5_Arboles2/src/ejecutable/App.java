@@ -7,28 +7,17 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-		//Desde consola:
-//		Arbol a = new Arbol();
-//		a.inicializarArbol(); //Mostrar arbol
-//		//busqueda
-//		System.out.println("\nMatriz ideal:");
-//		a.imprimirMatriz(a.generarMatrizIdeal());
-//		//Anchura
-//		new Anchura(a.nodosDelArbol, a.generarMatrizIdeal()).inicializarBusqueda();
-//		System.out.println();
-//		//Profundidad
-//		new Profundidad(a.nodosDelArbol, a.generarMatrizIdeal()).inicializarBusqueda();
-		
-		//Utilizando agentes inteligentes:
-		System.out.println("|====================== Arbol ======================|");
+		//inicializando arbol
 		Arbol a = new Arbol();
-		a.inicializarArbol();
+		a.inicializarArbol(); // crea el arbol
 		System.out.println("Total de nodos (matrices) generadas: "+ a.nodosDelArbol.size());
-		Contenedor con = new Contenedor();
-		System.out.println("\nMatriz ideal:");
-		a.imprimirMatriz(a.generarMatrizIdeal());
+		System.out.println("\nMatriz ideal (Objetivo a buscar):");
+		a.imprimirMatriz(a.generarMatrizIdeal()); //muestra la matriz a buscar
+
+		//Utilizando agentes inteligentes:
 		System.out.println("|====================== Agentes ======================|");
-		con.inicializarContenedor(a);
-		
+		Contenedor con = new Contenedor();
+		//inicia el contenedor, enviandole como argumento la clase arbol completa:
+		con.inicializarContenedor(a); 
 	}
 }

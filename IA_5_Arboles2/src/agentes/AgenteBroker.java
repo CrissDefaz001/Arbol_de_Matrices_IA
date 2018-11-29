@@ -30,49 +30,50 @@ public class AgenteBroker extends Agent {
 		public void action() {
 
 			ArrayList<Integer> mensajes = new ArrayList<>();
-			int a1 = 0, a2 = 0, cont =0;
-			String a = "", b = "";
-			StringBuffer cadena = new StringBuffer();
+			int a1 = 0, a2 = 0, a3 = 0,cont =0;
+			String a = "", b = "", c = "";
+			StringBuffer cadena = new StringBuffer(); //recolecta los resultados de cada agente
 			cadena.append("\n|===================== Resultados =====================|\n");
-			while(cont < 2) {
+			while(cont < 3) {
 				ACLMessage acl = blockingReceive();
-				if (acl.getConversationId().equals("A->B")) {
+				if (acl.getConversationId().equals("A->B")) { //AgenteAnchura
 					try {
 						mensajes.add((Integer) acl.getContentObject());
-					} catch (UnreadableException e1) {
-						e1.printStackTrace();
-					}
-					try {
 						a1 = (int) acl.getContentObject();
 						a = acl.getSender().getName();
-					} catch (UnreadableException e) {
-						e.printStackTrace();
-					}
-					cadena.append(a).append(": recorrió en anchura: ").append(a1).append(" nodos\n");
-
-				}
-				
-				if (acl.getConversationId().equals("P->B")) {
-					try {
-						mensajes.add((Integer) acl.getContentObject());
 					} catch (UnreadableException e1) {
 						e1.printStackTrace();
 					}
+					cadena.append(a).append(": recorrió en anchura: ").append(a1).append(" nodos\n");
+				}
+				
+				if (acl.getConversationId().equals("P->B")) { //AgenteProfundidad
 					try {
+						mensajes.add((Integer) acl.getContentObject());
 						a2 = (int) acl.getContentObject();
 						b = acl.getSender().getName();
-					} catch (UnreadableException e) {
-						e.printStackTrace();
+					} catch (UnreadableException e1) {
+						e1.printStackTrace();
 					}
 					cadena.append(b).append(": recorrió en profundidad: ").append(a2).append(" nodos\n");
-
+				}
+				
+				if (acl.getConversationId().equals("H->B")) { //AgenteAnchura
+					try {
+						mensajes.add((Integer) acl.getContentObject());
+						a3 = (int) acl.getContentObject();
+						c = acl.getSender().getName();
+					} catch (UnreadableException e1) {
+						e1.printStackTrace();
+					}
+					cadena.append(c).append(": recorrió en heuristica: ").append(a3).append(" nodos\n");
 				}
 				cont++;
 			}
 		
 			bandera = true;
 			
-			if (mensajes.size() == 2) {
+			if (mensajes.size() == 3) {
 				int max = 45646546;
 				for (int i = 0; i < mensajes.size(); i++) {
 					if (mensajes.get(i) < max) {

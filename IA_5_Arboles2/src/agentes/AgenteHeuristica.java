@@ -1,15 +1,16 @@
 package agentes;
 
 import java.io.IOException;
-import ambiente.Anchura;
 import ambiente.Arbol;
+import ambiente.Heuristica;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 
 @SuppressWarnings("serial")
-public class AgenteAnchura extends Agent {
+public class AgenteHeuristica extends Agent {
+
 
 	@Override
 	protected void takeDown() {
@@ -18,25 +19,27 @@ public class AgenteAnchura extends Agent {
 
 	@Override
 	protected void setup() {
-		addBehaviour(new ComportamientoAgenteAnchura());
+
+		addBehaviour(new ComportamientoAgenteHeuristica());
 		super.setup();
 	}
 
-	class ComportamientoAgenteAnchura extends Behaviour {
+	class ComportamientoAgenteHeuristica extends Behaviour {
 
 		@Override
 		public void action() {
-			Object obj = (Object) getArguments()[0];//capturamos la clase arbol enviada desde el contenedor
+			Object obj = (Object) getArguments()[0]; //capturamos la clase arbol enviada desde el contenedor
 			int a = 0;
-			Anchura an = new Anchura(((Arbol) obj).nodosDelArbol, ((Arbol) obj).generarMatrizIdeal());
-			a = an.inicializarBusqueda();
+			//instaciamos la clase heuristica
+			Heuristica an = new Heuristica(((Arbol) obj).nodosDelArbol, ((Arbol) obj).generarMatrizIdeal());
+			a = an.buscar();
 		
 			if (a != 0) {
 				/* ======== Mensaje ======= */
-				enviarMensaje(a, "AgenteBroker", "A->B");
+				enviarMensaje(a, "AgenteBroker", "H->B");
 				/* ======== Mensaje ======= */
 			}
-			doDelete(); //m
+			doDelete();
 		}
 
 		@Override
@@ -50,7 +53,7 @@ public class AgenteAnchura extends Agent {
 			ACLMessage acl = new ACLMessage(ACLMessage.INFORM);
 			acl.addReceiver(id);
 			acl.setSender(getAID());
-			//	acl.setSender(getAgent().getAID()); //si el comportamiento esta en otro lado.
+		//	acl.setSender(getAgent().getAID()); //si el comportamiento esta en otro lado.
 			try {
 				acl.setContentObject(tam);
 			} catch (IOException e) {

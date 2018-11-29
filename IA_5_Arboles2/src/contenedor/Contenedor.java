@@ -2,6 +2,7 @@ package contenedor;
 
 import agentes.AgenteAnchura;
 import agentes.AgenteBroker;
+import agentes.AgenteHeuristica;
 import agentes.AgenteProfundidad;
 import ambiente.Arbol;
 import jade.core.Profile;
@@ -16,8 +17,8 @@ public class Contenedor {
 	Object[] argumentos = new Object[2]; 
 	//arreglo de argumentos a pasar a los agentes
 	
+	//Contendor sin argumentos
 	public void inicializarContenedor() {
-		
 		Runtime rt = Runtime.instance();
 		rt.setCloseVM(true);
 		Profile pf = new ProfileImpl(null, 1099, null);
@@ -25,9 +26,9 @@ public class Contenedor {
 		inicializarAgentes();
 	}
 	
+	//Contendor que recibe una clase como argumento
 	public void inicializarContenedor(Arbol as) {
-		
-		argumentos[0] = (Object)  as;
+		argumentos[0] = (Object)  as; //Obtiene el arbol recibido como argumento y lo pasa a un object []
 		Runtime rt = Runtime.instance();
 		rt = jade.core.Runtime.instance();
         rt.setCloseVM(true);
@@ -37,17 +38,19 @@ public class Contenedor {
         inicializarAgentes();
 	}
 
+	//metodo que crea los agentes
 	public void inicializarAgentes() {
-		
 		try {
-			mainContenedor.createNewAgent("AgenteBroker", AgenteBroker.class.getName(), argumentos).start();
+			//cada agente (excepto el broker) recibirá la clase arbol como argumento en sus respectivas clases
+			//cuando reciban al arbol  podrán ejecutar los metodos del arbol desde su propia clase
+			//el broker solo recibirá datos como mensajes desde los otros 3 agentes
+			mainContenedor.createNewAgent("AgenteBroker", AgenteBroker.class.getName(), null).start();
 			mainContenedor.createNewAgent("AgenteAnchura", AgenteAnchura.class.getName(), argumentos).start();
 	        mainContenedor.createNewAgent("AgenteProfundidad", AgenteProfundidad.class.getName(), argumentos).start();
+	        mainContenedor.createNewAgent("AgenteHeuristica", AgenteHeuristica.class.getName(), argumentos).start();
 			
 		} catch (StaleProxyException e) {
-
 			e.printStackTrace();
-		
 		}
 		
 	}

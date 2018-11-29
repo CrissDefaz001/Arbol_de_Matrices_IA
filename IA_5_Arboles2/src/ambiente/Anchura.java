@@ -6,10 +6,9 @@ import java.util.Queue;
 
 public class Anchura {
 
-	public ArrayList<Nodo<int[][]>> nodosDelArbol;
-	public ArrayList<Nodo<int[][]>> recorrido;
+	public ArrayList<Nodo<int[][]>> nodosDelArbol; //lista de nodos del arbol a recorrer
+	public ArrayList<Nodo<int[][]>> recorrido; //lista de nodos recorridos hasta objetivo
 	public int[][] mat_ideal;
-//	Arbol a = new Arbol();
 
 	// Constructor que recibe el arbol y la matriz ideal
 	public Anchura(ArrayList<Nodo<int[][]>> nodosDelArbol, int[][] m) {
@@ -61,7 +60,7 @@ public class Anchura {
 	// Compara la matriz contenida en el nodo con la matriz ideal
 	private boolean buscarMatriz(int[][] m_ideal, Nodo<int[][]> nodo) {
 		for (int i = 0; i < m_ideal.length; i++) {
-			for (int j = 0; j < m_ideal.length + 1; j++) {
+			for (int j = 0; j <= m_ideal.length; j++) {
 				if (m_ideal[i][j] != nodo.getData()[i][j]) {
 					return false;
 				}

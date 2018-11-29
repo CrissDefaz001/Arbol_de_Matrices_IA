@@ -47,8 +47,8 @@ public class Arbol {
 	
 	//Matriz ideal para busqueda en anchura, (por criterio empírico)
 	public int[][] generarMatrizIdeal(){
-		int[][] m = {{vrf[0],	0,	vrf[0],		0},
-					 {vrf[1],vrf[1],vrf[1],vrf[1]},
+		int[][] m = {{vrf[0],	0,	vrf[0],vrf[0]},
+					 {vrf[1],vrf[1],vrf[1],	    0},
 					 {0,	 vrf[2],	 0,vrf[2]}};
 		return m;
 	}
@@ -86,7 +86,7 @@ public class Arbol {
 		copiarMatriz(m2, ant);
 		m2[1][col] = vrf[1];
 		//en total genera una lista de 8 hijos posibles sin control de repetidos
-		//depurando la lista de hijos segun criterios y agregandolos a la lista de hijos
+		//depurando la lista de hijos segun criterios yqq agregandolos a la lista de hijos
 		listaHijos.add(new Nodo<int[][]>(m2,  padre.info.toString() +" " +nh++));
 		
 		//creando hijos válidos del nodo pasado como parámetro
@@ -108,7 +108,7 @@ public class Arbol {
 	/*
 	criterio 1: Utilizar máximo hasta 2 fundas por cada trimestre
 	criterio 2: Serán matrices válidas si en cada trimestre (columna)
-	la utilización de ciertas fundas generan ganancias mayores a $3500
+	la utilización de ciertas fundas generan ganancias mayores a $3000
 	Si cumple la comdición, se almacena en la lista de matrices válidas
 	*/
 	//Retornará una lista depurada
@@ -122,7 +122,7 @@ public class Arbol {
 					utilidad += listaIni.get(i).getData()[j][col];
 				}
 			}
-			if (utilidad >= 3500 && cont < 3) { //validacion de criterios
+			if (utilidad >= 3000 && cont < 3) { //validacion de criterios
 				listaFin.add(new Nodo<int[][]>(listaIni.get(i).getData(), listaIni.get(i).info));
 			}
 			utilidad = 0; cont = 0; // reiniciando contadores
@@ -143,13 +143,13 @@ public class Arbol {
 
 	//imprime el arbol como tal, agregando espacios por niveles
 	public void imprimirArbol(Nodo<int[][]> padre, int level) {
-	//	System.out.println(); //desomentar para separar matrices
+	 //	System.out.println(); //desomentar para separar matrices
 		for (int i = 1; i < level; i++) {
 			System.out.print("    ");
 		}
 		System.out.println(padre.info);
 		for (Nodo<int[][]> each : padre.getHijos()) {
-		//	imprimirMatriz(each.getData()); //descomentar para ver matrices generadas
+	// 		imprimirMatriz(each.getData()); //descomentar para ver matrices generadas
 			imprimirArbol(each, level + 1);
 		}
 	}

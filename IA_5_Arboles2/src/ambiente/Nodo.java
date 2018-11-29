@@ -6,31 +6,39 @@ import java.util.ArrayList;
 public class Nodo<T> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	Nodo<T> padre;
-	T dato = null;
-	Object info;
-	ArrayList<Nodo<T>> hijos = new ArrayList<>();
+	//Nodo<T> implica que el nodo puede contener cualquier tipo de objeto
+	//matrices, objetos, listas, arboles, pilas, etc.
+	
+	Nodo<T> padre; //nodo padre
+	T dato = null; //dato, en este caso, contiene una matriz
+	Object info;// nombre o descriptor del nodo
+	ArrayList<Nodo<T>> hijos = new ArrayList<>(); //lista para almacenar nodos hijos
 
+	//constructor de nodo: matriz y nombre de matriz
 	public Nodo (T datos, Object info) {
 		this.dato = datos;
 		this.info = info;
 	}
 	
-	public Nodo<T> crearHijo(Nodo<T> hijo) {
+	//crea un solo hijo
+	public Nodo<T> crearHijo(Nodo<T> hijo) { 
 		hijo.setPadre(this);
 		this.hijos.add(hijo);
 		return hijo;
 	}
 
-	public void crearHijos(ArrayList<Nodo<T>> hijos) {
+	//crea varios hijos a partir de un arraylist de hijos
+	public void crearHijos(ArrayList<Nodo<T>> hijos) { 
 		hijos.forEach(each -> each.setPadre(this));
 		this.hijos.addAll(hijos);
 	}
 
+	//devuelve una lista de hijos de un nodo padre específico
 	public ArrayList<Nodo<T>> getHijos() {
 		return hijos;
 	}
 
+	// retorna la matriz de un nodo
 	public T getData() {
 		return dato;
 	}
@@ -43,7 +51,7 @@ public class Nodo<T> implements Serializable{
 		this.padre = parent;
 	}
 
-	public Nodo<T> obtenerPadre() {
+	public Nodo<T> getPadre() {
 		return padre;
 	}	
 

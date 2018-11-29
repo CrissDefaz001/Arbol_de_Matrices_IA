@@ -5,10 +5,9 @@ import java.util.Stack;
 
 public class Profundidad {
 
-	public ArrayList<Nodo<int[][]>> nodosDelArbol;
-	public ArrayList<Nodo<int[][]>> recorrido;
+	public ArrayList<Nodo<int[][]>> nodosDelArbol; //lista de nodos del arbol a recorrer
+	public ArrayList<Nodo<int[][]>> recorrido; //lista de nodos recorridos hasta objetivo
 	public int[][] mat_ideal;
-	//Arbol a;
 
 	// Constructor que recibe el arbol y la matriz ideal
 	public Profundidad(ArrayList<Nodo<int[][]>> nodosDelArbol, int[][] m) {
@@ -22,7 +21,7 @@ public class Profundidad {
 //	public ArrayList<Nodo<int[][]>> inicializarBusqueda() {
 	public int inicializarBusqueda() {
 		Nodo<int[][]> padre = nodosDelArbol.get(0);
-		System.out.println("|========= Búsqueda en Profundidad ========|");
+		System.out.println("\n|========= Búsqueda en Profundidad ========|");
 		buscarDFS(padre);
 		System.out.println("|================ Recorrido ===============|");
 		imprimirRecorrido(recorrido);
@@ -62,7 +61,7 @@ public class Profundidad {
 	// Compara la matriz contenida en el nodo con la matriz ideal
 	private boolean buscarMatriz(int[][] m_ideal, Nodo<int[][]> nodo) {
 		for (int i = 0; i < m_ideal.length; i++) {
-			for (int j = 0; j < m_ideal.length + 1; j++) {
+			for (int j = 0; j <= m_ideal.length; j++) {
 				if (m_ideal[i][j] != nodo.getData()[i][j]) {
 					return false;
 				}
