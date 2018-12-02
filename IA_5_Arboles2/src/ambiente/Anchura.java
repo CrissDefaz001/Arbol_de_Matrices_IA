@@ -6,29 +6,27 @@ import java.util.Queue;
 
 public class Anchura {
 
-	public ArrayList<Nodo<int[][]>> nodosDelArbol; //lista de nodos del arbol a recorrer
+	public ArrayList<Nodo<int[][]>> tree; //lista de nodos del arbol a recorrer
 	public ArrayList<Nodo<int[][]>> recorrido; //lista de nodos recorridos hasta objetivo
 	public int[][] mat_ideal;
 
 	// Constructor que recibe el arbol y la matriz ideal
 	public Anchura(ArrayList<Nodo<int[][]>> nodosDelArbol, int[][] m) {
-		this.nodosDelArbol = nodosDelArbol; // Recibe al arraylist de la clase Arbol
+		this.tree = nodosDelArbol; // Recibe al arraylist de la clase Arbol
 		recorrido = new ArrayList<>(); // ArrayList que almacenará el recorido de nodos
 		mat_ideal = new int[3][4];
 		mat_ideal = m; // guarda la matriz ideal m en una  variable para esta clase
 	}
 
 	// Inicia la búsqueda y retorna la lista de nodos recorridos
-//	public ArrayList<Nodo<int[][]>> inicializarBusqueda() {
-	public int inicializarBusqueda() {
-	//	new Anchura(a.nodosDelArbol, a.generarMatrizIdeal());
-		Nodo<int[][]> padre = nodosDelArbol.get(0);
-		System.out.println("|=========== Búsqueda en Anchura ==========|");
+	public ArrayList<Nodo<int[][]>> iniciarBusqueda() {
+		Nodo<int[][]> padre = tree.get(0);
+		System.out.println("\n|================== Búsqueda en Anchura =================|");
 		buscarBFS(padre);
-		System.out.println("|================ Recorrido ===============|");
+		System.out.println("\n|======================= Recorrido ======================|");
 		imprimirRecorrido(recorrido);
-		System.out.println("Total nodos recorridos: " + recorrido.size());
-		return recorrido.size();
+	//	System.out.println("Total nodos recorridos: " + recorrido.size());
+		return recorrido;
 	}
 
 	// La busqueda en anchura utiliza una cola para guardar los nodos y recorrelas

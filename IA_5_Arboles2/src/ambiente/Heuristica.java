@@ -17,15 +17,15 @@ public class Heuristica {
 		mat_ideal = m;
 	}
 
-	public int buscar() {
+	public ArrayList<Nodo<int[][]>> iniciarBusqueda() {
 		Nodo<int[][]> padre = nodosArbol.get(0);
-		System.out.println("\n|=========== Búsqueda Heuristica ==========|");
+		System.out.println("\n|================== Búsqueda Heuristica =================|");
 		int columna = 0;
 		buscarHeuristica(padre, columna);
-		System.out.println("|================ Recorrido ===============|");
+		System.out.println("\n|======================= Recorrido ======================|");
 		imprimirRecorrido(recorrido);
-		System.out.println("Total nodos recorridos: " + recorrido.size());
-		return recorrido.size();
+	//	System.out.println("Total nodos recorridos: " + recorrido.size());
+		return recorrido;
 	}
 
 	public void buscarHeuristica(Nodo<int[][]> padre, int col) {
