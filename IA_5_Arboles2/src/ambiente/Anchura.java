@@ -6,8 +6,8 @@ import java.util.Queue;
 
 public class Anchura {
 
-	public ArrayList<Nodo<int[][]>> tree; //lista de nodos del arbol a recorrer
-	public ArrayList<Nodo<int[][]>> recorrido; //lista de nodos recorridos hasta objetivo
+	public ArrayList<Nodo<int[][]>> tree; // lista de nodos del arbol a recorrer
+	public ArrayList<Nodo<int[][]>> recorrido; // lista de nodos recorridos hasta objetivo
 	public int[][] mat_ideal;
 
 	// Constructor que recibe el arbol y la matriz ideal
@@ -15,7 +15,7 @@ public class Anchura {
 		this.tree = nodosDelArbol; // Recibe al arraylist de la clase Arbol
 		recorrido = new ArrayList<>(); // ArrayList que almacenará el recorido de nodos
 		mat_ideal = new int[3][4];
-		mat_ideal = m; // guarda la matriz ideal m en una  variable para esta clase
+		mat_ideal = m; // guarda la matriz ideal m en una variable para esta clase
 	}
 
 	// Inicia la búsqueda y retorna la lista de nodos recorridos
@@ -25,22 +25,21 @@ public class Anchura {
 		buscarBFS(padre);
 		System.out.println("\n|======================= Recorrido ======================|");
 		imprimirRecorrido(recorrido);
-	//	System.out.println("Total nodos recorridos: " + recorrido.size());
 		return recorrido;
 	}
 
 	// La busqueda en anchura utiliza una cola para guardar los nodos y recorrelas
 	private void buscarBFS(Nodo<int[][]> raiz) {
 		Queue<Nodo<int[][]>> cola = new LinkedList<>();
-		cola.add(raiz); //Añade la raiz a la cola
-		recorrido.add(raiz); //Añade la raiz al recorrido
+		cola.add(raiz); // Añade la raiz a la cola
+		recorrido.add(raiz); // Añade la raiz al recorrido
 		while (cola.size() > 0) {
-			Nodo<int[][]> temp = cola.poll(); //nodo temporal para recorrer hijos
+			Nodo<int[][]> temp = cola.poll(); // nodo padre temporal para recorrer hijos
 			for (Nodo<int[][]> each : temp.getHijos()) {
 				recorrido.add(each); // añade sus hijos al recorrido
 				if (buscarMatriz(mat_ideal, each)) {
-					System.out.println("Encontré la matriz con anchura!: " +each.info);
-					return;
+					System.out.println("Encontré la matriz con anchura!: " + each.info);
+					return; // interrumpe la búsqueda si encuentra el nodo ideal
 				} else {
 					cola.add(each); // Agrega el nodo a la cola hasta hallar el ideal
 				}

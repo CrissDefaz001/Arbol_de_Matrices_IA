@@ -19,13 +19,13 @@ public class AgenteHeuristica extends Agent {
 	DatosSeriales s;
 
 	protected void takeDown() {
-		//ultimas palabras del agente antes de morir:
-		System.out.println(getName()+" ha muerto :(");
+		// ultimas palabras del agente antes de morir:
+		System.out.println(getName() + " ha muerto :(");
 		super.takeDown();
 	}
 
 	protected void setup() {
-		//comportamiento del agente:
+		// comportamiento del agente:
 		addBehaviour(new ComportamientoAgenteHeuristica());
 		super.setup();
 	}
@@ -33,15 +33,18 @@ public class AgenteHeuristica extends Agent {
 	class ComportamientoAgenteHeuristica extends Behaviour {
 
 		public void action() {
-			//Recibimos al Arbol enviado desde el contenedor con getArguments
-			//Luego podremos usar las funciones publicas de la clase Arbol en este agente
-			ar = (Arbol) getArguments()[0]; 
-			//Enviamos la lista que retorna la clase heuristica al constructor de la clase serializada: DatosSeriales 
-			//Invocando al metodo iniciarBusqueda, obtenemos la lista recorrida por heuristica:
-			s = new DatosSeriales(new Heuristica(ar.nodosDelArbol, ar.generarMatrizIdeal()).iniciarBusqueda()," recorrió en heuristica: ");
-			//Enviamos los datos serializados al agente broker
+			// Recibimos al Arbol enviado desde el contenedor con getArguments
+			// Luego podremos usar las funciones publicas de la clase Arbol en este agente
+			ar = (Arbol) getArguments()[0];
+			// Enviamos la lista que retorna la clase heuristica al constructor de la clase
+			// serializada: DatosSeriales
+			// Invocando al metodo iniciarBusqueda, obtenemos la lista recorrida por
+			// heuristica:
+			s = new DatosSeriales(new Heuristica(ar.nodosDelArbol, ar.generarMatrizIdeal()).iniciarBusqueda(),
+					" recorrió en heuristica: ");
+			// Enviamos los datos serializados al agente broker
 			enviarMensaje(s, "AgenteBroker", "H->B");
-			//Cuando finalice el envio, mata al agente
+			// Cuando finalice el envio, mata al agente
 			doDelete();
 		}
 

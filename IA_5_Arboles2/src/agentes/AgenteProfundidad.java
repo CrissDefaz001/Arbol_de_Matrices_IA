@@ -14,18 +14,18 @@ import jade.lang.acl.ACLMessage;
 //Agente que recorre en profundidad usando la clase Profundidad sobre el argumento 'Arbol' recibido desde el contenedor:
 @SuppressWarnings("serial")
 public class AgenteProfundidad extends Agent {
-	
+
 	Arbol ar;
 	DatosSeriales s;
 
 	protected void takeDown() {
-		//ultimas palabras del agente antes de morir:
-		System.out.println(getName()+" ha muerto :(");
+		// ultimas palabras del agente antes de morir:
+		System.out.println(getName() + " ha muerto :(");
 		super.takeDown();
 	}
 
 	protected void setup() {
-		//comportamiento del agente:
+		// comportamiento del agente:
 		addBehaviour(new ComportamientoAgenteProf());
 		super.setup();
 	}
@@ -33,17 +33,20 @@ public class AgenteProfundidad extends Agent {
 	class ComportamientoAgenteProf extends Behaviour {
 
 		public void action() {
-			//Recibimos al Arbol enviado desde el contenedor con getArguments
-			//Luego podremos usar las funciones publicas de la clase Arbol en este agente
-			ar = (Arbol) getArguments()[0]; 
-			//Enviamos la lista que retorna la clase profundidad al constructor de la clase serializada: DatosSeriales 
-			//Invocando al metodo iniciarBusqueda, obtenemos la lista recorrida por profundidad:
-			s = new DatosSeriales(new Profundidad(ar.nodosDelArbol, ar.generarMatrizIdeal()).iniciarBusqueda()," recorrió en profundidad: ");
-			//Enviamos los datos serializados al agente broker
+			// Recibimos al Arbol enviado desde el contenedor con getArguments
+			// Luego podremos usar las funciones publicas de la clase Arbol en este agente
+			ar = (Arbol) getArguments()[0];
+			// Enviamos la lista que retorna la clase profundidad al constructor de la clase
+			// serializada: DatosSeriales
+			// Invocando al metodo iniciarBusqueda, obtenemos la lista recorrida por
+			// profundidad:
+			s = new DatosSeriales(new Profundidad(ar.nodosDelArbol, ar.generarMatrizIdeal()).iniciarBusqueda(),
+					" recorrió en profundidad: ");
+			// Enviamos los datos serializados al agente broker
 			enviarMensaje(s, "AgenteBroker", "P->B");
-			//Cuando finalice el envio, mata al agente
+			// Cuando finalice el envio, mata al agente
 			doDelete();
-			
+
 		}
 
 		public boolean done() {

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class DatosSeriales implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	ArrayList<Nodo<int[][]>> lista; //lista
-	String info; //descripción de lista: anchura, profundidad o heurística.
+	ArrayList<Nodo<int[][]>> lista; // lista
+	String info; // descripción de lista: anchura, profundidad o heurística.
 
 	public DatosSeriales(ArrayList<Nodo<int[][]>> lista, String info) {
 		super();

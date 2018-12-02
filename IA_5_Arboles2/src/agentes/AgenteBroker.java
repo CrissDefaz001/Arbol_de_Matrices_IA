@@ -27,7 +27,7 @@ public class AgenteBroker extends Agent {
 	}
 
 	protected void takeDown() {
-		System.out.println("\n"+getName() + " terminó su tareas y ha muerto :(");
+		System.out.println("\n" + getName() + " terminó su tareas y ha muerto :(");
 		super.takeDown();
 
 	}
@@ -41,7 +41,7 @@ public class AgenteBroker extends Agent {
 			// Utilizamos un while para asegurarnos de recibir todos los mensajes del
 			// blockingReceive:
 			while (cont < 3) {
-				//Recibe una cola de mensajes, en un intervalo de 2000 milisegundos
+				// Recibe una cola de mensajes, en un intervalo de 2000 milisegundos
 				ACLMessage acl = blockingReceive(2000);
 				if (acl.getConversationId().equals("A->B")) { // AgenteAnchura
 					try {
@@ -80,14 +80,14 @@ public class AgenteBroker extends Agent {
 			System.out.println("\n|====================== Resultados ======================|");
 			ordenarCaminos();
 			bandera = true;
-			doDelete(); //finaliza todas las tareas y muere para liberar recursos
+			doDelete(); // finaliza todas las tareas y muere para liberar recursos
 		}
 
 		// Metodo adpatado para detectar el mejor y el peor camino recorrido:
 		// Es un método útil solamente cuando tenemos 3 recorridos:
 		StringBuffer sb = new StringBuffer();
 
-		//Imprime los resultados y determina el mejor y peor camino
+		// Imprime los resultados y determina el mejor y peor camino
 		public void ordenarCaminos() {
 			int[] n = new int[datos.length];
 			for (int i = 0; i < datos.length; i++) {
@@ -95,16 +95,16 @@ public class AgenteBroker extends Agent {
 				// Imprimiendo resultados
 				sb.append(datos[i][2]).append(datos[i][1]).append("").append(datos[i][0]).append(" nodos");
 				System.out.println(sb.toString());
-				sb.delete(0, sb.length()); //renicia en blanco la cadena
+				sb.delete(0, sb.length()); // renicia en blanco la cadena
 			}
-			Arrays.sort(n); //ordena los datos
+			Arrays.sort(n); // ordena los datos
 			System.out.println("\nMejor camino: " + n[0] + " nodos recorridos por: " + datos[buscarIndice(n[0])][2]);
 			System.out.println("Peor camino: " + n[datos.length - 1] + " nodos recorridos por: "
 					+ datos[buscarIndice(n[datos.length - 1])][2]);
 		}
 
-		//busca los indices del mejor y peor recorrido 
-		//para extraer toda su informacion de la matriz 'datos'
+		// busca los indices del mejor y peor recorrido
+		// para extraer toda su informacion de la matriz 'datos'
 		public int buscarIndice(int a) {
 			for (int i = 0; i < datos.length; i++) {
 				if (a == (int) datos[i][0]) {

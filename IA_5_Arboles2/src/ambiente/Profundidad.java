@@ -5,8 +5,8 @@ import java.util.Stack;
 
 public class Profundidad {
 
-	public ArrayList<Nodo<int[][]>> tree; //lista de nodos del arbol a recorrer
-	public ArrayList<Nodo<int[][]>> recorrido; //lista de nodos recorridos hasta objetivo
+	public ArrayList<Nodo<int[][]>> tree; // lista de nodos del arbol a recorrer
+	public ArrayList<Nodo<int[][]>> recorrido; // lista de nodos recorridos hasta objetivo
 	public int[][] mat_ideal;
 
 	// Constructor que recibe el arbol y la matriz ideal
@@ -25,26 +25,25 @@ public class Profundidad {
 		buscarDFS(padre);
 		System.out.println("\n|======================= Recorrido ======================|");
 		imprimirRecorrido(recorrido);
-//		System.out.println("Total nodos recorridos: " + recorrido.size());
 		return recorrido;
-		
+
 	}
 
 	// La busqueda en profundidad utiliza una pila para guardar los nodos y
 	// recorrelas
 	private void buscarDFS(Nodo<int[][]> raiz) {
 		Stack<Nodo<int[][]>> pila = new Stack<>();
-		pila.push(raiz); //Añade la raiz a la pila
-		recorrido.add(raiz); //Añade la raiz al recorrido
+		pila.push(raiz); // Añade la raiz a la pila
+		recorrido.add(raiz); // Añade la raiz al recorrido
 		while (pila.size() > 0) {
-			Nodo<int[][]> temp = pila.pop();  //nodo temporal para recorrer hijos
+			Nodo<int[][]> temp = pila.pop(); // nodo padre temporal para recorrer hijos
 			for (Nodo<int[][]> each : temp.getHijos()) {
 				recorrido.add(each); // añade sus hijos al recorrido
 				if (buscarMatriz(mat_ideal, each)) {
-					System.out.println("Encontré la matriz con profundidad!: "+each.info);
-					return;
+					System.out.println("Encontré la matriz con profundidad!: " + each.info);
+					return; // interrumpe la búsqueda si encuentra el nodo ideal
 				} else {
-					pila.push(each); // Agrega el nodo a la cola hasta hallar el ideal
+					pila.push(each); // Agrega el nodo a la pila hasta hallar el ideal
 				}
 			}
 		}
