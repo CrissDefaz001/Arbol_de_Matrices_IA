@@ -14,21 +14,12 @@ import jade.wrapper.StaleProxyException;
 public class Contenedor {
 
 	AgentContainer mainContenedor;
+	Arbol as = new Arbol();
 	Object[] argumentos = new Object[2]; 
-	//arreglo de argumentos a pasar a los agentes
-	
-	//Contendor sin argumentos
-	public void inicializarContenedor() {
-		Runtime rt = Runtime.instance();
-		rt.setCloseVM(true);
-		Profile pf = new ProfileImpl(null, 1099, null);
-		mainContenedor = rt.createMainContainer(pf);
-		inicializarAgentes();
-	}
 	
 	//Contendor que recibe una clase como argumento
 	public void inicializarContenedor(Arbol as) {
-		argumentos[0] = (Object)  as; //Obtiene el arbol recibido como argumento y lo pasa a un object []
+		argumentos[0] = (Arbol)  as; //Obtiene el arbol inicializado desde 'App' y lo pasa a un object []
 		Runtime rt = Runtime.instance();
 		rt = jade.core.Runtime.instance();
         rt.setCloseVM(true);

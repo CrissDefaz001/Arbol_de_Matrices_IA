@@ -16,15 +16,16 @@ public class Arbol {
 	
 
 	// Insertar la primera matriz vacia (raiz)
-	public void inicializarArbol() {
+
+	//Retorna un arraylist con el arbol de matrices
+	public void iniciarArbol() {
 		int[][] inicial = {{0,0,0,0},{0,0,0,0},{0,0,0,0}}; //encerando raiz
 		crearMatricesHijos(inicial, raiz, 0); //genera primeros hijos del padre
 		raiz.setData(inicial);
 		nodosDelArbol.add(raiz);//agregando a un arbol
 		generarArbol(raiz, 1); //hijos de hijos, desde la columna 1 
-		System.out.println("|======================= Arbol =======================|");
 		imprimirArbol(raiz, 1); //imprime el arbol, desde el nivel 1
-
+		System.out.println("Total de nodos (matrices) generadas: "+nodosDelArbol.size());
 	}
 	
 	//metodo recursivo para crear el arbol y guardarlo en un ArrayList
@@ -108,7 +109,7 @@ public class Arbol {
 	/*
 	criterio 1: Utilizar máximo hasta 2 fundas por cada trimestre
 	criterio 2: Serán matrices válidas si en cada trimestre (columna)
-	la utilización de ciertas fundas generan ganancias mayores a $3000
+	la utilización de ciertas fundas generan ganancias mayores a $3500
 	Si cumple la comdición, se almacena en la lista de matrices válidas
 	*/
 	//Retornará una lista depurada
@@ -122,7 +123,7 @@ public class Arbol {
 					utilidad += listaIni.get(i).getData()[j][col];
 				}
 			}
-			if (utilidad >= 3000 && cont < 3) { //validacion de criterios
+			if (utilidad >= 3500 && cont < 3) { //validacion de criterios
 				listaFin.add(new Nodo<int[][]>(listaIni.get(i).getData(), listaIni.get(i).info));
 			}
 			utilidad = 0; cont = 0; // reiniciando contadores

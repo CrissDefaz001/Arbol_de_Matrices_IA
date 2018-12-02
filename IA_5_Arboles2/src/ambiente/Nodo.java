@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Nodo<T> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	//Nodo<T> implica que el nodo puede contener cualquier tipo de objeto
+	//Nodo<T> implica que el nodo puede contener cualquier estructura de datos
 	//matrices, objetos, listas, arboles, pilas, etc.
 	
 	Nodo<T> padre; //nodo padre

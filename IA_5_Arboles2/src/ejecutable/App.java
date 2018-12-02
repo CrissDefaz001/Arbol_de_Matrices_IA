@@ -3,21 +3,24 @@ package ejecutable;
 import ambiente.Arbol;
 import contenedor.Contenedor;
 
-public class App {
-	
-	public static void main(String[] args) {
-		
-		//inicializando arbol
-		Arbol a = new Arbol();
-		a.inicializarArbol(); // crea el arbol
-		System.out.println("Total de nodos (matrices) generadas: "+ a.nodosDelArbol.size());
-		System.out.println("\nMatriz ideal (Objetivo a buscar):");
-		a.imprimirMatriz(a.generarMatrizIdeal()); //muestra la matriz a buscar
+//Ejecutable de la aplicación, el árbol se crea fuera de los agenes para evitar problemas de tiempos
+//es posible hacer que el agente broker genere el árbol
+//pero los resultados en consola no se muestran en orden
 
-		//Utilizando agentes inteligentes:
-		System.out.println("|====================== Agentes ======================|");
-		Contenedor con = new Contenedor();
-		//inicia el contenedor, enviandole como argumento la clase arbol completa:
-		con.inicializarContenedor(a); 
+public class App {
+
+	public static void main(String[] args) {
+
+		Arbol ar = new Arbol();
+		// generando árbol
+		System.out.println("|============================== Árbol ===============================|");
+		ar.iniciarArbol(); // Imprime el arbol
+	
+		// Generando matriz ideal:
+		System.out.println("\n|================= Matriz ideal (Objetivo a buscar) =================|");
+		ar.imprimirMatriz(ar.generarMatrizIdeal()); // muestra la matriz a buscar
+		//Inicia el contenedor utilizando agentes inteligentes con el árbol como parámetro:
+		System.out.println("\n|============================= Agentes ==============================|");
+		new Contenedor().inicializarContenedor(ar); 
 	}
 }
